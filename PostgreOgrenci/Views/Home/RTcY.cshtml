@@ -1,4 +1,5 @@
-﻿
+﻿@model PostgreOgrenci.Models.Ogrenci
+
 @{
     Layout = null;
 }
@@ -6,11 +7,34 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>RTcY</title>
 </head>
+
 <body>
-    <h3>RTCY Bilişim</h3>
+
+
+    <table style="width:100%;" border="1">
+        <th>
+        <td>isim</td>
+        <td>soyisim</td>
+        <td>email</td></th>
+
+
+        <% foreach(var item in model) { %>
+            <ItemTemplate>
+                <tr>
+                    <td></td>
+                    <td>item.isim</td>
+                    <td> item.soyisim</td>
+                    <td>item.email</td>
+                </tr>
+            </ItemTemplate>
+        <% } %>
+    </table>
+
 </body>
+
 </html>

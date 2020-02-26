@@ -22,7 +22,7 @@ namespace PostgreOgrenci.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var data = _ctxpost.ogrenci.OrderBy(c => c.Id);
+            var data = _ctxpost.ogrenci;
             return Ok(data);
         }
 
