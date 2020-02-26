@@ -1,12 +1,42 @@
-﻿@using System.Web.Helpers
-@using System.Web
-@model PostgreOgrenci.Models.Ogrenci
+﻿@model IEnumerable<PostgreOgrenci.Models.Ogrenci>
 
 @{
     Layout = null;
 }
 
-    <div>
-        @Model.isim
-    </div>
+<!DOCTYPE html>
 
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RTcY</title>
+</head>
+
+<body>
+
+    <div><b>Table Format Data Displaying in ForEach</b><br /></div>
+    <table border="1">
+        <tr>
+            <th>Employee Id </th>
+            <th>First Name </th>
+            <th>Last Name </th>
+            <th>Email</th>
+        </tr>
+
+        @foreach (var d in Model)
+        {
+    <tr>
+        <td>@d.Id</td>
+        <td>@d.isim</td>
+        <td>@d.soyisim</td>
+        <td>@d.email</td>
+
+    </tr>
+
+        }
+    </table>
+
+</body>
+
+</html>

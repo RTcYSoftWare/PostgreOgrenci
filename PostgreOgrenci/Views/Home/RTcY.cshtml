@@ -1,4 +1,4 @@
-﻿@model PostgreOgrenci.Models.Ogrenci
+﻿@model IEnumerable<PostgreOgrenci.Models.Ogrenci>
 
 @{
     Layout = null;
@@ -15,24 +15,25 @@
 
 <body>
 
+    <div><b>Table Format Data Displaying in ForEach</b><br /></div>
+    <table class="table table-bordered table-responsive table-hover">
+        <tr>
+            <th>Employee Id </th>
+            <th>First Name </th>
+            <th>Last Name </th>
+            <th>Email</th>
+        </tr>
 
-    <table style="width:100%;" border="1">
-        <th>
-        <td>isim</td>
-        <td>soyisim</td>
-        <td>email</td></th>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.isim</td>
+                <td>@d.soyisim</td>
+                <td>@d.email</td>
 
+            </tr>
 
-        <% foreach(var item in model) { %>
-            <ItemTemplate>
-                <tr>
-                    <td></td>
-                    <td>item.isim</td>
-                    <td> item.soyisim</td>
-                    <td>item.email</td>
-                </tr>
-            </ItemTemplate>
-        <% } %>
+        }
     </table>
 
 </body>

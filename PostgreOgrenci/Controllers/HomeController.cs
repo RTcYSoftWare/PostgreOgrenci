@@ -35,15 +35,16 @@ namespace PostgreOgrenci.Controllers
             return Ok(ogrenci);
         }
 
+        private List<Ogrenci> ogr;
 
         [HttpGet("grid")]
         public ActionResult Grid()
         {
             var data = _ctxpost.ogrenci;
 
-            var grid = new WebGrid(source: data);
+            ogr = data.ToList<Ogrenci>();
 
-            return View(grid);
+            return View(ogr);
         }
     }
 }
