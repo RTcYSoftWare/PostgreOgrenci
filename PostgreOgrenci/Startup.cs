@@ -40,7 +40,12 @@ namespace PostgreOgrenci
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            //app.UseMvc();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{controller=Home}/{action=Grid}/{id?}");
+            });
         }
     }
 }
