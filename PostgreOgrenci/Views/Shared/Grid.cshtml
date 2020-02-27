@@ -22,94 +22,124 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <title>RTcY</title>
+    <title>Öğrenci kayıtları</title>
+
+    <style type="text/css">
+
+        body{
+            width:100%;
+            height:1000px;
+            background-color:aliceblue;
+            background-image:url(images/konyateknik1.jpg);
+        }
+
+        #icerik{
+            width:1000px;
+            height:auto;
+            background-color:white;
+            margin-left:300px;
+            margin-top:150px;
+        }
+
+        #insertdiv {
+            margin-left:350px;
+        }
+
+        nav{
+	        width:100%;
+	        height:80px;
+	        position:absolute;
+	        background-color:red;
+	        top:0px;
+        }
+
+        div#NavContainer{
+	        width:1346px;
+	        height:80px;
+	        position:relative;
+	        margin:auto;
+        }
+
+        div#navlogo{
+	        font-family:cursive;
+	        color:yellow;
+	        font-size:30px;
+	        line-height:80px;
+	        display:inline;
+	        float:left;
+        }
+        h3{
+            background-color:aliceblue;
+        }
+
+    </style>
+
 </head>
 
 <body>
-    
+
+
     <script type="text/javascript">
         $(function () {
             $('#myModal').on('show.bs.modal', function (event) {
-                let Id = $(event.relatedTarget).data('id') 
+                let Id = $(event.relatedTarget).data('id')
                 $(this).find('.item-1').val(Id)
             })
         });
     </script>
 
-    <div class="container">
-        <h2>Button Styles</h2>
-        @using (Html.BeginForm("Grid", "Home"))
-        {
-            <input type="text" name="Variable" />
-            <button type="submit" class="btn" value="passbasic">Basic</button>
+    <nav>
+        <div id="NavContainer">
+            <div id="navlogo">Konya Teknik Üniversitesi</div>
+        </div>
+    </nav>
 
-            <button type="button" class="btn btn-primary">Primary</button>
-            <button type="button" class="btn btn-success">Success</button>
-            <button type="button" class="btn btn-info">Info</button>
-            <button type="button" class="btn btn-warning">Warning</button>
-            <button type="button" class="btn btn-danger">Danger</button>
-            <button type="button" class="btn btn-dark">Dark</button>
-        }
-        @using (Html.BeginForm("Delet", "Home"))
-        {
-            <input type="text" name="Delete" />
-            <button type="submit" class="btn btn-secondary">Deneme</button>
-        }
-        @using (Html.BeginForm("Insert", "Home"))
-        {
-            <input type="text" name="isim" />
-            <input type="text" name="soyisim" />
-            <input type="text" name="email" />
+        <div id="icerik">
 
-            <button type="submit" class="btn btn-warning">Insert</button>
-        }
-        @using (Html.BeginForm("Update", "Home"))
-        {
-            <input type="text" name="id" />
-            <input type="text" name="isim" />
-            <input type="text" name="soyisim" />
-            <input type="text" name="email" />
+            <h3>Öğrenci Listesi</h3>
 
-            <button type="submit" class="btn btn-warning">Update</button>
-        }
+            <table class="table table-striped table-bordered">
 
-    </div>
-
-    <div class="container">
-
-        <h2>Postgre Ogrenci Web App</h2>
-        <p>Öğrenci Listesi</p>
-
-        <table class="table table-striped table-bordered">
-
-            <thead>
-                <tr>
-
-                    <th>İsim</th>
-                    <th>Soyisim</th>
-                    <th>Email</th>
-                    <th></th>
-
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var d in Model)
-                {
+                <thead>
                     <tr>
-                        <td>@d.Id</td>
-                        <td>@d.isim</td>
-                        <td>@d.soyisim</td>
-                        <td>@d.email</td>
-                        <td width="230">
-                            <div align="center">
-                                @Html.ActionLink("DELETE", "Delet", "Home", new { delete = d.Id }, new { @class = "btn btn-secondary" })
-                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-id=@d.Id data-target="#myModal">UPDATE</button>
-                            </div>
-                        </td>
+
+                        <th>İsim</th>
+                        <th>Soyisim</th>
+                        <th>Email</th>
+                        <th></th>
+
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var d in Model)
+                    {
+                        <tr>
+                            <td>@d.isim</td>
+                            <td>@d.soyisim</td>
+                            <td>@d.email</td>
+                            <td width="230">
+                                <div align="center">
+                                    @Html.ActionLink("DELETE", "Delet", "Home", new { delete = d.Id }, new { @class = "btn btn-danger" })
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-id=@d.Id data-target="#myModal">UPDATE</button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div id="insertdiv" class="container">
+            @using (Html.BeginForm("Insert", "Home"))
+            {
+                <input type="text" name="isim" />
+                <input type="text" name="soyisim" />
+                <input type="text" name="email" />
+                <button type="submit" class="btn btn-primary">Insert</button>
+            }
+        </div>
+
+
 
         <!-- Pop-up Ekran -->
         <div class="modal fade" id="myModal" role="dialog">
@@ -123,13 +153,13 @@
                     <div class="modal-body">
                         <div align="center">
                             @using (Html.BeginForm("Update", "Home"))
-                            {                             
-                                <input type="hidden" class="item-1" name="update"/>
+                            {
+                                <input type="hidden" class="item-1" name="update" />
                                 <input type="text" name="isim" value=" " />
-                                <input type="text" name="soyisim" value=" " /> 
-                                <input type="text" name="email" value=" " /> 
-                                
-                                <button type="submit" class="btn btn-warning">Insert</button>
+                                <input type="text" name="soyisim" value=" " />
+                                <input type="text" name="email" value=" " />
+
+                                <button type="submit" class="btn btn-warning">Update</button>
                             }
                         </div>
                     </div>
@@ -139,6 +169,10 @@
                 </div>
             </div>
         </div>
+
+
+
+
 
 </body>
 
