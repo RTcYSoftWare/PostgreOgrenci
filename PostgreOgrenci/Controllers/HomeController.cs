@@ -89,9 +89,9 @@ namespace PostgreOgrenci.Controllers
 
             return View("~/Views/Shared/Grid.cshtml", ogr);
         }
-        
-        [Route("Home/update")]
-        [HttpPost("id")]
+
+        [Route("Home/grid")]
+        [HttpPost]
         public ActionResult Update(int update, String isim, String soyisim, String email)
         {
             var updateogr = _ctxpost.ogrenci.Find(update);
@@ -99,8 +99,7 @@ namespace PostgreOgrenci.Controllers
             updateogr.soyisim = soyisim;
             updateogr.email = email;
 
-            _ctxpost.SaveChangesAsync();
-
+            _ctxpost.SaveChanges();
 
             var data1 = _ctxpost.ogrenci;
             ogr = data1.ToList<Ogrenci>();
