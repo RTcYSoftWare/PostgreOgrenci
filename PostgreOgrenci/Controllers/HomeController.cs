@@ -56,7 +56,9 @@ namespace PostgreOgrenci.Controllers
 
             return View(ogr);
         }
-        [HttpPost("delet")]
+
+        [Route("Home/delete")]
+        [HttpPost("id")]
         public ActionResult Delet(int delete)
         {
             var data = _ctxpost.ogrenci.Find(delete);
@@ -87,19 +89,21 @@ namespace PostgreOgrenci.Controllers
 
             return View("~/Views/Shared/Grid.cshtml", ogr);
         }
-        public ActionResult Update(String isim, String soyisim, String email)
+        
+        [Route("Home/update")]
+        [HttpPost("id")]
+        public ActionResult Update(int update, String isim, String soyisim, String email)
         {
-            //ogrenci ogre = new ogrenci();
+            var updateogr = _ctxpost.ogrenci.Find(update);
+            updateogr.isim = isim;
+            updateogr.soyisim = soyisim;
+            updateogr.email = email;
 
-            //ogre.isim = isim;
-            //ogre.soyisim = soyisim;
-            //ogre.email = email;
+            _ctxpost.SaveChangesAsync();
 
-            //_ctxpost.ogrenci.add(ogre);
-            //_ctxpost.savechanges();
 
-            //var data1 = _ctxpost.ogrenci;
-            //ogr = data1.tolist<ogrenci>();
+            var data1 = _ctxpost.ogrenci;
+            ogr = data1.ToList<Ogrenci>();
 
             return View("~/Views/Shared/Grid.cshtml", ogr);
         }
