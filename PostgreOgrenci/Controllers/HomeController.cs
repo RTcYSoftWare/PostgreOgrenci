@@ -55,7 +55,56 @@ namespace PostgreOgrenci.Controllers
             ogr.Add(data);
 
             return View(ogr);
-        
         }
+        [HttpPost("delet")]
+        public ActionResult Delet(int delete)
+        {
+            var data = _ctxpost.ogrenci.Find(delete);
+            _ctxpost.ogrenci.Remove(data);
+            _ctxpost.SaveChanges();
+
+            var data1 = _ctxpost.ogrenci;
+            ogr = data1.ToList<Ogrenci>();
+
+            return View("~/Views/Shared/Grid.cshtml",ogr);
+        }
+
+
+        [HttpPost("insert")]
+        public ActionResult Insert(String isim, String soyisim, String email)
+        {
+            Ogrenci ogre = new Ogrenci();
+
+            ogre.isim = isim;
+            ogre.soyisim = soyisim;
+            ogre.email = email;
+
+            _ctxpost.ogrenci.Add(ogre);
+            _ctxpost.SaveChanges();
+
+            var data1 = _ctxpost.ogrenci;
+            ogr = data1.ToList<Ogrenci>();
+
+            return View("~/Views/Shared/Grid.cshtml", ogr);
+        }
+        public ActionResult Update(String isim, String soyisim, String email)
+        {
+            //ogrenci ogre = new ogrenci();
+
+            //ogre.isim = isim;
+            //ogre.soyisim = soyisim;
+            //ogre.email = email;
+
+            //_ctxpost.ogrenci.add(ogre);
+            //_ctxpost.savechanges();
+
+            //var data1 = _ctxpost.ogrenci;
+            //ogr = data1.tolist<ogrenci>();
+
+            return View("~/Views/Shared/Grid.cshtml", ogr);
+        }
+
+
+
     }
 }

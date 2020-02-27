@@ -24,6 +24,13 @@
 
 
 <body>
+   @*<script type="text/javascript">
+       function delete(){
+
+       }
+   </script>*@
+   
+
 
     <div class="container">
         <h2>Button Styles</h2>
@@ -31,16 +38,39 @@
         {
             <input type="text" name="Variable" />
 
-            <button type="submit" class="btn">Basic</button>
+            <button type="submit" class="btn" value="passbasic">Basic</button>
 
-        <button type="button" class="btn btn-primary">Primary</button>
-        <button type="button" class="btn btn-secondary">Secondary</button>
-        <button type="button" class="btn btn-success">Success</button>
-        <button type="button" class="btn btn-info">Info</button>
-        <button type="button" class="btn btn-warning">Warning</button>
-        <button type="button" class="btn btn-danger">Danger</button>
-        <button type="button" class="btn btn-dark">Dark</button>
+            <button type="button" class="btn btn-primary">Primary</button>
+            <button type="button" class="btn btn-success">Success</button>
+            <button type="button" class="btn btn-info">Info</button>
+            <button type="button" class="btn btn-warning">Warning</button>
+            <button type="button" class="btn btn-danger">Danger</button>
+            <button type="button" class="btn btn-dark">Dark</button>
         }
+        @using (Html.BeginForm("Delet", "Home"))
+        {
+            <input type="text" name="Delete" />
+            <button type="submit" class="btn btn-secondary">Deneme</button>
+        }
+        @using (Html.BeginForm("Insert", "Home"))
+        {
+            <input type="text" name="isim" />
+            <input type="text" name="soyisim" />
+            <input type="text" name="email" />
+
+            <button type="submit" class="btn btn-warning">Insert</button>
+        }
+        @using (Html.BeginForm("Update", "Home"))
+        {
+            <input type="text" name="isim" />
+            <input type="text" name="soyisim" />
+            <input type="text" name="email" />
+
+            <button type="submit" class="btn btn-warning">Update</button>
+        }
+
+
+
     </div>
 
     <div class="container">
@@ -50,22 +80,25 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Id</th>
                     <th>İsim</th>
                     <th>Soyisim</th>
                     <th>Email</th>
+
                 </tr>
             </thead>
             <tbody>
                 @foreach (var d in Model)
                 {
                     <tr>
+                        <td><button type="submit" class="btn btn-secondary">Delete</button></td>
                         <td>@d.Id</td>
                         <td>@d.isim</td>
                         <td>@d.soyisim</td>
                         <td>@d.email</td>
                     </tr>
-                }
+                    }
             </tbody>
         </table>
     </div>
