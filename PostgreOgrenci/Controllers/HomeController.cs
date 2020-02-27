@@ -43,8 +43,19 @@ namespace PostgreOgrenci.Controllers
             var data = _ctxpost.ogrenci;
 
             ogr = data.ToList<Ogrenci>();
+            //ogr.Clear();
+            return View(ogr);
+        }
+
+        [HttpPost("grid")]
+        public ActionResult Grid(int variable)
+        {
+            var data = _ctxpost.ogrenci.Find(variable);
+            ogr = new List<Ogrenci>();
+            ogr.Add(data);
 
             return View(ogr);
+        
         }
     }
 }

@@ -4,38 +4,71 @@
     Layout = null;
 }
 
+
+
 <!DOCTYPE html>
 
 <html>
 
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
     <title>RTcY</title>
 </head>
 
+
 <body>
 
-    <div><b>Table Format Data Displaying in ForEach</b><br /></div>
-    <table border="1">
-        <tr>
-            <th>Employee Id </th>
-            <th>First Name </th>
-            <th>Last Name </th>
-            <th>Email</th>
-        </tr>
-
-        @foreach (var d in Model)
+    <div class="container">
+        <h2>Button Styles</h2>
+        @using (Html.BeginForm("Grid", "Home"))
         {
-    <tr>
-        <td>@d.Id</td>
-        <td>@d.isim</td>
-        <td>@d.soyisim</td>
-        <td>@d.email</td>
+            <input type="text" name="Variable" />
 
-    </tr>
+            <button type="submit" class="btn">Basic</button>
 
+        <button type="button" class="btn btn-primary">Primary</button>
+        <button type="button" class="btn btn-secondary">Secondary</button>
+        <button type="button" class="btn btn-success">Success</button>
+        <button type="button" class="btn btn-info">Info</button>
+        <button type="button" class="btn btn-warning">Warning</button>
+        <button type="button" class="btn btn-danger">Danger</button>
+        <button type="button" class="btn btn-dark">Dark</button>
         }
-    </table>
+    </div>
+
+    <div class="container">
+        <h2>Postgre Ogrenci Web App</h2>
+        <p>Öğrenci Listesi</p>
+
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>İsim</th>
+                    <th>Soyisim</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var d in Model)
+                {
+                    <tr>
+                        <td>@d.Id</td>
+                        <td>@d.isim</td>
+                        <td>@d.soyisim</td>
+                        <td>@d.email</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 
 </body>
 
