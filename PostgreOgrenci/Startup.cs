@@ -30,6 +30,9 @@ namespace PostgreOgrenci
 
             services.AddEntityFrameworkNpgsql().AddDbContext<PostgresContext>(opt =>
             opt.UseNpgsql(Configuration.GetConnectionString("PostgresConnection")));
+
+            services.AddEntityFrameworkNpgsql().AddDbContext<PostgresContext>(opt =>
+            opt.UseNpgsql(Configuration.GetConnectionString("PostgresConnectionToken")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +42,8 @@ namespace PostgreOgrenci
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseStaticFiles();
 
             //app.UseMvc();
 

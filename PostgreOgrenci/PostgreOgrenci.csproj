@@ -5,10 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\images\konyateknik1.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Views\Values\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\images\konyateknik1.jpg" />
     <None Include="wwwroot\lib\twitter-bootstrap\css\bootstrap-grid.css" />
     <None Include="wwwroot\lib\twitter-bootstrap\css\bootstrap-grid.css.map" />
     <None Include="wwwroot\lib\twitter-bootstrap\css\bootstrap-grid.min.css" />
@@ -32,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="jquery.datatables" Version="1.10.15" />
     <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />

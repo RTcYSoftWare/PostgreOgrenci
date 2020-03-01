@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PostgreOgrenci.Models;
 using System.Web.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PostgreOgrenci.Controllers
-{
+{ 
+
+    [Authorize]
     [Route("api/[controller]")]
     public class HomeController : Controller
     {
@@ -18,6 +21,9 @@ namespace PostgreOgrenci.Controllers
             _ctxpost = ctxpost;
         }
 
+        private List<OgrenciToken> token;
+
+        [AllowAnonymous]
         [HttpGet("rtcy")]
         public ActionResult RTcY()
         {
@@ -30,20 +36,34 @@ namespace PostgreOgrenci.Controllers
             ogrenci.soyisim = data1.ToString();
             ogrenci.email = data2.ToString();*/
 
-            var ogrenci = _ctxpost.ogrenci.Where(x => x.Id != 5000).ToList();
+            //var ogrenci = _ctxpost.ogrenci.Where(x => x.Id != 5000).ToList();
 
-            return Ok(ogrenci);
+            //return Ok(ogrenci);
+            var data = _ctxpost.ogrenciToken;
+
+
+            token = data.ToList<OgrenciToken>();
+            //ogr.Clear();
+
+            //HttpContext.Request.Form[""]
+
+            return View(token);
         }
 
         private List<Ogrenci> ogr;
 
+        [AllowAnonymous]
         [HttpGet("grid")]
         public ActionResult Grid()
         {
             var data = _ctxpost.ogrenci;
+            
 
             ogr = data.ToList<Ogrenci>();
             //ogr.Clear();
+
+            //HttpContext.Request.Form[""]
+            
             return View(ogr);
         }
 
@@ -65,10 +85,12 @@ namespace PostgreOgrenci.Controllers
             _ctxpost.ogrenci.Remove(data);
             _ctxpost.SaveChanges();
 
-            var data1 = _ctxpost.ogrenci;
-            ogr = data1.ToList<Ogrenci>();
+            //var data1 = _ctxpost.ogrenci;
+            //ogr = data1.ToList<Ogrenci>();
 
-            return View("~/Views/Shared/Grid.cshtml",ogr);
+            return RedirectToAction("Grid", "Home");
+
+            //return View("~/Views/Shared/Grid.cshtml",ogr);
         }
 
 
@@ -84,10 +106,11 @@ namespace PostgreOgrenci.Controllers
             _ctxpost.ogrenci.Add(ogre);
             _ctxpost.SaveChanges();
 
-            var data1 = _ctxpost.ogrenci;
-            ogr = data1.ToList<Ogrenci>();
+            //var data1 = _ctxpost.ogrenci;
+            //ogr = data1.ToList<Ogrenci>();
 
-            return View("~/Views/Shared/Grid.cshtml", ogr);
+            return RedirectToAction("Grid", "Home");
+            //return View("~/Views/Shared/Grid.cshtml", ogr);
         }
 
         [Route("Home/grid")]
