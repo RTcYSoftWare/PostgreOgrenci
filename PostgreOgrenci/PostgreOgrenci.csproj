@@ -38,6 +38,7 @@
 
   <ItemGroup>
     <PackageReference Include="jquery.datatables" Version="1.10.15" />
+    <PackageReference Include="JWT" Version="6.1.0" />
     <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />

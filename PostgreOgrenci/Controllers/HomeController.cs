@@ -6,27 +6,33 @@ using Microsoft.AspNetCore.Mvc;
 using PostgreOgrenci.Models;
 using System.Web.Helpers;
 using Microsoft.AspNetCore.Authorization;
+using PostgreOgrenci.Services.Abstract;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace PostgreOgrenci.Controllers
-{ 
+{
 
-    [Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     public class HomeController : Controller
     {
         private readonly PostgresContext _ctxpost;
+        private IAdministrator _administrator;
 
-        public HomeController(PostgresContext ctxpost)
+        public HomeController(PostgresContext ctxpost, IAdministrator administrator)
         {
+            _administrator = administrator;
             _ctxpost = ctxpost;
         }
 
         private List<OgrenciToken> token;
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
+
         [HttpGet("rtcy")]
-        public ActionResult RTcY()
+        public ActionResult RTcY(OgrenciToken ogrenci)
         {
+            
             /*var data = _ctxpost.ogrenci.Min(min => min.isim);
             var data1 = _ctxpost.ogrenci.Min(min => min.soyisim);
             var data2=_ctxpost.ogrenci.Min(min => min.email);
@@ -40,8 +46,9 @@ namespace PostgreOgrenci.Controllers
 
             //return Ok(ogrenci);
             var data = _ctxpost.ogrenciToken;
-
-
+            //OgrenciToken ogr = new OgrenciToken();
+            //ogr.
+            
             token = data.ToList<OgrenciToken>();
             //ogr.Clear();
 

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PostgreOgrenci.Models;
+using PostgreOgrenci.Services.Abstract;
 
 namespace PostgreOgrenci.Controllers
 {
@@ -12,9 +14,11 @@ namespace PostgreOgrenci.Controllers
     {
 
         private readonly PostgresContext db;
+        private IAdministrator _administrator;
 
-        public LoginController(PostgresContext ctxpost)
+        public LoginController(PostgresContext ctxpost, IAdministrator administrator)
         {
+            _administrator = administrator;
             db = ctxpost;
         }
 
@@ -31,26 +35,36 @@ namespace PostgreOgrenci.Controllers
         }
 
         [HttpPost]
-        public ActionResult Validate(Ogrenci admin)
+        public ActionResult Validate(OgrenciToken ogrenci)
         {
-            var _admin = db.ogrenci.Where(s => s.email == admin.email);
-            if (_admin.Any())
-            {
-                if (_admin.Where(s => s.isim == admin.isim).Any())
-                {
 
-                    return Json(new { status = true, message = "Login Successfull!" });
-                }
-                else
-                {
-                    return Json(new { status = false, message = "Invalid Password!" });
-                }
-            }
-            else
-            {
-                return Json(new { status = false, message = "Invalid Email!" });
-            }
+            var user = _administrator.Authenticate(ogrenci.ogrenciNo,ogrenci.sifre);
+            
+            HttpContext.Session.SetString("JWToken", user.token);
+            
+            if (user == null)
+                return Json(new { status = false, message = "Invalid Password!" });
+
+            return Json(new { status = true, message = "Login Successfull!" });
 
         }
     }
 }
+
+//var _admin = db.ogrenci.Where(s => s.email == ogrenci.email);
+//if (_admin.Any())
+//{
+//    if (_admin.Where(s => s.isim == ogrenci.isim).Any())
+//    {
+
+//        return Json(new { status = true, message = "Login Successfull!" });
+//    }
+//    else
+//    {
+//        return Json(new { status = false, message = "Invalid Password!" });
+//    }
+//}
+//else
+//{
+//    return Json(new { status = false, message = "Invalid Email!" });
+//}

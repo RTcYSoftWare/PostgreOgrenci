@@ -42,14 +42,14 @@
                         Konya Teknik Üniversitesi
                     </span>
                     <div class="wrap-input100 validate-input m-b-10" data-validate="Lütfen Öğrenci No Giriniz">
-                        <input class="input100" type="text" name="email" id="email" placeholder="Öğrenci No">
+                        <input class="input100" type="text" name="email" id="ogrenciNo" placeholder="Öğrenci No">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-user"></i>
                         </span>
                     </div>
                     <div class="wrap-input100 validate-input m-b-10" data-validate="Lütfen Şifre Giriniz">
-                        <input class="input100" type="password" name="isim" id="isim" placeholder="Şifre">
+                        <input class="input100" type="password" name="isim" id="sifre" placeholder="Şifre">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock"></i>
@@ -86,8 +86,8 @@
                 url: '@Url.Action("Validate", "Login")',
 
                 data: {
-                email : $('#email').val(),
-                isim : $('#isim').val()
+                ogrenciNo : $('#ogrenciNo').val(),
+                sifre : $('#sifre').val()
                 },
 
                 error: function (result) {
