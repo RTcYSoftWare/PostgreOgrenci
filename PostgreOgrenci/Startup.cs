@@ -18,6 +18,8 @@ using PostgreOgrenci.Services;
 using PostgreOgrenci.Services.Abstract;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Http;
+using NLog.Extensions.Logging;
+using NLog.Web;
 
 namespace PostgreOgrenci
 {
@@ -45,6 +47,9 @@ namespace PostgreOgrenci
             services.AddEntityFrameworkNpgsql().AddDbContext<PostgresContext>(opt =>
             opt.UseNpgsql(Configuration.GetConnectionString("PostgresConnectionToken")));
 
+            services.AddEntityFrameworkNpgsql().AddDbContext<PostgresContext>(opt =>
+            opt.UseNpgsql(Configuration.GetConnectionString("PostgresConnectionLog")));
+
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
@@ -65,16 +70,21 @@ namespace PostgreOgrenci
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
-                    ValidateAudience = false
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero
                 };
             });
 
             // Uygulama servisi için Dependecy Injection Ayarı
             services.AddScoped<IAdministrator, Administrator>();
+
+            //for nlog
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -92,6 +102,9 @@ namespace PostgreOgrenci
             app.Use(async (context, next) =>
             {
                 var JWToken = context.Session.GetString("JWToken");
+
+                
+
                 if (!string.IsNullOrEmpty(JWToken))
                 {
                     context.Request.Headers.Add("Authorization", "Bearer " + JWToken);
