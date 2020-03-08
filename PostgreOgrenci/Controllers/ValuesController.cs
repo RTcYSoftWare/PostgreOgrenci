@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using PostgreOgrenci.Models;
 
 namespace PostgreOgrenci.Controllers
-{
+{//satsat
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
