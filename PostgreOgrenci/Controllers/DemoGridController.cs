@@ -48,7 +48,7 @@ namespace ExampleGrid.Controllers
                 int recordsTotal = 0;
 
                 // Getting all Customer data  
-                var customerData = (from tempcustomer in db.ogrenci
+                var customerData = (from tempcustomer in db.Ogrenci
                                     select tempcustomer);
 
                 //Sorting  

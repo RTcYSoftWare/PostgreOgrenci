@@ -31,16 +31,22 @@ namespace PostgreOgrenci.Controllers
         public IActionResult Login()
         {
             return View();
+        }
 
+        [HttpGet]
+        public ActionResult Logout(OgrenciToken ogrenci)
+        {
+
+            return null;
         }
 
         [HttpPost]
-        public ActionResult Validate(OgrenciToken ogrenci)
+        public ActionResult Validate(Ogrenci ogrenci)
         {
 
-            var user = _administrator.Authenticate(ogrenci.ogrenciNo,ogrenci.sifre);
+            var user = _administrator.Authenticate(ogrenci.Numara.ToString(),ogrenci.Sifre);
             
-            HttpContext.Session.SetString("JWToken", user.token);
+            HttpContext.Session.SetString("JWToken", user.Token);
             
             if (user == null)
                 return Json(new { status = false, message = "Invalid Password!" });
@@ -50,21 +56,3 @@ namespace PostgreOgrenci.Controllers
         }
     }
 }
-
-//var _admin = db.ogrenci.Where(s => s.email == ogrenci.email);
-//if (_admin.Any())
-//{
-//    if (_admin.Where(s => s.isim == ogrenci.isim).Any())
-//    {
-
-//        return Json(new { status = true, message = "Login Successfull!" });
-//    }
-//    else
-//    {
-//        return Json(new { status = false, message = "Invalid Password!" });
-//    }
-//}
-//else
-//{
-//    return Json(new { status = false, message = "Invalid Email!" });
-//}

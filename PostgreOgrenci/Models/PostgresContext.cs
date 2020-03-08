@@ -17,7 +17,8 @@ namespace PostgreOgrenci.Models
 
         }
 
-        public DbSet<Ogrenci> ogrenci { get; set; }
+
+        public DbSet<Ogrenci> Ogrenci { get; set; }
         public DbSet<OgrenciToken> ogrenciToken { get; set; }
         public DbSet<postgreLogs> postgreLogs { get; set; }
 

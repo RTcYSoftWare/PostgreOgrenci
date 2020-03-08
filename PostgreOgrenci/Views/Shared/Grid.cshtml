@@ -114,13 +114,13 @@
                     @foreach (var d in Model)
                     {
                         <tr>
-                            <td>@d.isim</td>
-                            <td>@d.soyisim</td>
-                            <td>@d.email</td>
+                            <td>@d.Adi</td>
+                            <td>@d.Soyadi</td>
+                            <td>@d.Email</td>
                             <td width="230">
                                 <div align="center">
-                                    @Html.ActionLink("DELETE", "Delet", "Home", new { delete = d.Id }, new { @class = "btn btn-danger" })
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-id=@d.Id data-target="#myModal">UPDATE</button>
+                                    @Html.ActionLink("DELETE", "Delet", "Home", new { delete = d.Numara }, new { @class = "btn btn-danger" })
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-id=@d.Numara data-target="#myModal">UPDATE</button>
                                 </div>
                             </td>
                         </tr>
