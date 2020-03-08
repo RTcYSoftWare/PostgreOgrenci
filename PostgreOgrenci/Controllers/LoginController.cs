@@ -40,12 +40,16 @@ namespace PostgreOgrenci.Controllers
 
             var user = _administrator.Authenticate(ogrenci.ogrenciNo,ogrenci.sifre);
             
-            HttpContext.Session.SetString("JWToken", user.token);
-            
             if (user == null)
-                return Json(new { status = false, message = "Invalid Password!" });
+            {
+                return Json(new { status = false, message = "HATALI GİRİŞ" }); 
+            }
+            else
+            {
+                HttpContext.Session.SetString("JWToken", user.token);
+                return Json(new { status = true, message = "Login Successfull!" });
 
-            return Json(new { status = true, message = "Login Successfull!" });
+            }
 
         }
     }
