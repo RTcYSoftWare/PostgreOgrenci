@@ -9,7 +9,7 @@ using PostgreOgrenci.Services.Abstract;
 
 namespace PostgreOgrenci.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class LoginController : Controller
     {
 
@@ -26,7 +26,7 @@ namespace PostgreOgrenci.Controllers
         {
             return View();
         }
-        
+
         [HttpGet("login")]
         public IActionResult Login()
         {
@@ -34,24 +34,11 @@ namespace PostgreOgrenci.Controllers
 
         }
 
-        //[HttpPost("logout")]
-        //public ActionResult Logout()
-        //{
-        //    HttpContext.Session.SetString("JWToken", "");
-        //    return RedirectToAction("Login", "Login");
-        //}
-
-        [HttpGet]
-        public ActionResult Logout()
-        {
-            return RedirectToAction("Login", "Login");
-        }
-
         [HttpPost]
-        public ActionResult Validate(Ogrenci ogrenci)
+        public ActionResult Validate(OgrenciToken ogrenci)
         {
 
-            var user = _administrator.Authenticate(ogrenci.Numara, ogrenci.Sifre);
+            var user = _administrator.Authenticate(ogrenci.ogrenciNo,ogrenci.sifre);
             
             if (user == null)
             {
@@ -59,7 +46,6 @@ namespace PostgreOgrenci.Controllers
             }
             else
             {
-                
                 HttpContext.Session.SetString("JWToken", user.Token);
                 return Json(new { status = true, message = "Login Successfull!" });
 
@@ -69,3 +55,20 @@ namespace PostgreOgrenci.Controllers
     }
 }
 
+//var _admin = db.ogrenci.Where(s => s.email == ogrenci.email);
+//if (_admin.Any())
+//{
+//    if (_admin.Where(s => s.isim == ogrenci.isim).Any())
+//    {
+
+//        return Json(new { status = true, message = "Login Successfull!" });
+//    }
+//    else
+//    {
+//        return Json(new { status = false, message = "Invalid Password!" });
+//    }
+//}
+//else
+//{
+//    return Json(new { status = false, message = "Invalid Email!" });
+//}

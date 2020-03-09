@@ -28,8 +28,6 @@
 </head>
 <body>
 
-
-
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
@@ -109,12 +107,14 @@
 
         $.ajax(
             {
+
+
                 type: "POST",
                 url: '@Url.Action("Validate", "Login")',
 
                 data: {
-                Numara: $('#ogrenciNo').val(),
-                Sifre : $('#sifre').val()
+                ogrenciNo : $('#ogrenciNo').val(),
+                sifre : $('#sifre').val()
                 },
 
                 error: function (result) {

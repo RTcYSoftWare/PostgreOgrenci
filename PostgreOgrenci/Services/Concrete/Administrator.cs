@@ -28,13 +28,18 @@ namespace PostgreOgrenci.Services
             _appSettings = appSettings.Value;
         }
 
-        public Ogrenci Authenticate(int Numara, string Sifre)
+        public Ogrenci Authenticate(string OgrenciNo, string sifre)
         {
-            var user = _ctxpost.Ogrenci.Where(s => s.Numara == Numara && s.Sifre == Sifre).FirstOrDefault();
+            //var user = _ctxpost.ogrenciToken.Where(s => s.ogrenciNo == OgrenciNo);
+            //var user = _ctxpost.ogrenciToken.Find(41);
+
+            var user = _ctxpost.Ogrenci.Where(s => s.Numara.ToString() == OgrenciNo && s.Sifre == sifre).FirstOrDefault();
                        
+
             if (user == null)
                 return null;
 
+            // Authentication(Yetkilendirme) başarılı ise JWT token üretilir.
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -50,6 +55,9 @@ namespace PostgreOgrenci.Services
             
             user.Token = tokenHandler.WriteToken(token);
             _ctxpost.SaveChanges();
+
+            // Sifre null olarak gonderilir.
+            //user.Sifre = null;
 
             return user;
         }

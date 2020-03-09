@@ -96,7 +96,6 @@
     <PackageReference Include="NLog.Extensions.Logging" Version="1.6.1" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.1" />
-    <PackageReference Include="SweetAlert" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

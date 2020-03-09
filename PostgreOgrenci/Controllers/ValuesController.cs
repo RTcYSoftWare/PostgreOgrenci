@@ -7,7 +7,7 @@ using PostgreOgrenci.Models;
 
 namespace PostgreOgrenci.Controllers
 {//satsat
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
