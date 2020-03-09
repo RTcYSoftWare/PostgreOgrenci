@@ -8,6 +8,6 @@ namespace PostgreOgrenci.Services.Abstract
 {
     public interface IAdministrator
     {
-        OgrenciToken Authenticate(string kullaniciAdi, string sifre);
+        Ogrenci Authenticate(int kullaniciAdi, string sifre);
     }
 }

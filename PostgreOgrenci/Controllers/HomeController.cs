@@ -93,7 +93,7 @@ namespace PostgreOgrenci.Controllers
         [HttpGet("grid")]
         public ActionResult Grid()
         {
-            var data = _ctxpost.ogrenci;
+            var data = _ctxpost.Ogrenci;
             
 
             ogr = data.ToList<Ogrenci>();
@@ -107,7 +107,7 @@ namespace PostgreOgrenci.Controllers
         [HttpPost("grid")]
         public ActionResult Grid(int variable)
         {
-            var data = _ctxpost.ogrenci.Find(variable);
+            var data = _ctxpost.Ogrenci.Find(variable);
             ogr = new List<Ogrenci>();
             ogr.Add(data);
 
@@ -118,8 +118,8 @@ namespace PostgreOgrenci.Controllers
         [HttpPost("id")]
         public ActionResult Delet(int delete)
         {
-            var data = _ctxpost.ogrenci.Find(delete);
-            _ctxpost.ogrenci.Remove(data);
+            var data = _ctxpost.Ogrenci.Find(delete);
+            _ctxpost.Ogrenci.Remove(data);
             _ctxpost.SaveChanges();
 
             //var data1 = _ctxpost.ogrenci;
@@ -136,11 +136,11 @@ namespace PostgreOgrenci.Controllers
         {
             Ogrenci ogre = new Ogrenci();
 
-            ogre.isim = isim;
-            ogre.soyisim = soyisim;
-            ogre.email = email;
+            ogre.Adi = isim;
+            ogre.Soyadi = soyisim;
+            ogre.Email = email;
 
-            _ctxpost.ogrenci.Add(ogre);
+            _ctxpost.Ogrenci.Add(ogre);
             _ctxpost.SaveChanges();
 
             //var data1 = _ctxpost.ogrenci;
@@ -154,14 +154,14 @@ namespace PostgreOgrenci.Controllers
         [HttpPost]
         public ActionResult Update(int update, String isim, String soyisim, String email)
         {
-            var updateogr = _ctxpost.ogrenci.Find(update);
-            updateogr.isim = isim;
-            updateogr.soyisim = soyisim;
-            updateogr.email = email;
+            var updateogr = _ctxpost.Ogrenci.Find(update);
+            updateogr.Adi = isim;
+            updateogr.Soyadi = soyisim;
+            updateogr.Email = email;
 
             _ctxpost.SaveChanges();
 
-            var data1 = _ctxpost.ogrenci;
+            var data1 = _ctxpost.Ogrenci;
             ogr = data1.ToList<Ogrenci>();
 
             return View("~/Views/Shared/Grid.cshtml", ogr);
