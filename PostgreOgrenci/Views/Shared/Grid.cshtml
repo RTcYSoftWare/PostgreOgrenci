@@ -64,13 +64,13 @@
             @foreach (var d in Model)
             {
                 <tr>
-                    <td>@d.isim</td>
-                    <td>@d.soyisim</td>
-                    <td>@d.email</td>
+                    <td>@d.Adi</td>
+                    <td>@d.Soyadi</td>
+                    <td>@d.Email</td>
                     <td width="230">
                         <div align="center">
-                            @Html.ActionLink("SİL", "Delet", "Home", new { delete = d.Id }, new { @class = "btn btn-danger" })
-                            <button type="button" class="btn btn-warning" data-toggle="modal" data-id=@d.Id data-target="#myModal">GÜNCELLE</button>
+                            @Html.ActionLink("SİL", "Delet", "Home", new { delete = d.Numara }, new { @class = "btn btn-danger" })
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-id=@d.Numara data-target="#myModal">GÜNCELLE</button>
                         </div>
                     </td>
                 </tr>
@@ -115,6 +115,68 @@
             </div>
         </div>
     </div>
+
+    <script>
+    function Dogrula(){
+
+
+        if($('#ogrenciNo').val() && $('#ogrenciNo').val()){
+            Validate();
+        }
+        else{
+        alert("HATA");
+        }
+
+        }
+
+
+
+    function Validate() {
+
+        $.ajax(
+            {
+
+
+                type: "POST",
+                url: '@Url.Action("Validate", "Login")',
+
+                data: {
+                ogrenciNo : $('#ogrenciNo').val(),
+                sifre : $('#sifre').val()
+                },
+
+                error: function (result) {
+                    alert("There is a Problem, Try Again!");
+                },
+
+                success: function (result) {
+                    console.log(result);
+                    if (result.status == true) {
+                        window.location.href = '@Url.Action("Anasayfa", "Ogrenci")';
+                    }
+                    else {
+                       window.location.href = '@Url.Action("Login", "Login")';
+                       alert(result.message);
+
+                    }
+                }
+            });
+        }
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 

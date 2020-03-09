@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PostgreOgrenci.Models;
 using PostgreOgrenci.Services.Abstract;
@@ -35,14 +31,14 @@ namespace PostgreOgrenci.Controllers
         }
 
         [HttpPost]
-        public ActionResult Validate(OgrenciToken ogrenci)
+        public ActionResult Validate(Ogrenci ogrenci)
         {
 
-            var user = _administrator.Authenticate(ogrenci.ogrenciNo,ogrenci.sifre);
-            
+            var user = _administrator.Authenticate(ogrenci.Numara, ogrenci.Sifre);
+
             if (user == null)
             {
-                return Json(new { status = false, message = "HATALI GİRİŞ" }); 
+                return Json(new { status = false, message = "HATALI GİRİŞ" });
             }
             else
             {

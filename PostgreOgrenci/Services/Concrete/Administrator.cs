@@ -28,12 +28,12 @@ namespace PostgreOgrenci.Services
             _appSettings = appSettings.Value;
         }
 
-        public Ogrenci Authenticate(string OgrenciNo, string sifre)
+        public Ogrenci Authenticate(int OgrenciNo, string sifre)
         {
             //var user = _ctxpost.ogrenciToken.Where(s => s.ogrenciNo == OgrenciNo);
             //var user = _ctxpost.ogrenciToken.Find(41);
 
-            var user = _ctxpost.Ogrenci.Where(s => s.Numara.ToString() == OgrenciNo && s.Sifre == sifre).FirstOrDefault();
+            var user = _ctxpost.Ogrenci.Where(s => s.Numara == OgrenciNo && s.Sifre == sifre).FirstOrDefault();
                        
 
             if (user == null)
@@ -57,10 +57,9 @@ namespace PostgreOgrenci.Services
             _ctxpost.SaveChanges();
 
             // Sifre null olarak gonderilir.
-            //user.Sifre = null;
+            
 
             return user;
         }
-
     }
 }

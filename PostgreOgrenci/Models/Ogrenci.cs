@@ -17,6 +17,5 @@ namespace PostgreOgrenci.Models
         public string Email { get; set; }
         public string Sifre { get; set; }
         public string Token { get; set; }
-
     }
 }
