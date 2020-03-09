@@ -15,7 +15,7 @@ namespace PostgreOgrenci.Controllers
 {
 
     //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class HomeController : Controller
     {
 

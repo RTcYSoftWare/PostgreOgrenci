@@ -103,8 +103,6 @@ namespace PostgreOgrenci
             {
                 var JWToken = context.Session.GetString("JWToken");
 
-                
-
                 if (!string.IsNullOrEmpty(JWToken))
                 {
                     context.Request.Headers.Add("Authorization", "Bearer " + JWToken);
