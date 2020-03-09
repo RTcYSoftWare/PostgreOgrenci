@@ -4,64 +4,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login V12</title>
+    <title>Öğrnci Girişi</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="~/images/icons/favicon.ico" />
+    <link rel="icon" type="image/png" href="~/imageslogin/icons/ktunikon.png" />
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendorlogin/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/fontslogin/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="~/fontslogin/Linearicons-Free-v1.0.0/icon-font.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/vendorlogin/animate/animate.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendorlogin/css-hamburgers/hamburgers.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/vendorlogin/select2/select2.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="~/css/util.css">
-    <link rel="stylesheet" type="text/css" href="~/css/main.css">
+    <link rel="stylesheet" type="text/css" href="~/csslogin/util.css">
+    <link rel="stylesheet" type="text/css" href="~/csslogin/main.css">
     <!--===============================================================================================-->
 </head>
 <body>
 
     <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <img src="~/imageslogin/ktunavatar.jpg" alt="IMG">
+                </div>
 
-        <div class="container-login100" style="background-color:transparent; background-image: url(https://i.imgur.com/JZSzarM.jpg)">
-            <div class="wrap-login100 p-t-50 p-b-0">
                 <form class="login100-form validate-form">
-                    <div class="login100-form-avatar">
-                        <!-- <img src="~/images/avatar-01.jpg" alt="AVATAR"> -->
-                        <img src="~/images/konyateknik1.jpg" />
-                    </div>
-                    <span class="login100-form-title p-t-20 p-b-45">
-                        <!--John Doe -->
-                        Konya Teknik Üniversitesi
+                    <span class="login100-form-title">
+                        ÖĞRENCİ GİRİŞİ
                     </span>
-                    <div class="wrap-input100 validate-input m-b-10" data-validate="Lütfen Öğrenci No Giriniz">
-                        <input class="input100" type="text" name="email" id="ogrenciNo" placeholder="Öğrenci No">
+
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <input class="input100" type="text" name="email" id="ogrenciNo" placeholder="Öğrenci No" required>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-                            <i class="fa fa-user"></i>
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
                         </span>
                     </div>
-                    <div class="wrap-input100 validate-input m-b-10" data-validate="Lütfen Şifre Giriniz">
-                        <input class="input100" type="password" name="isim" id="sifre" placeholder="Şifre">
+
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+                        <input class="input100" type="password" name="isim" id="sifre" placeholder="Şifre" required>
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
-                            <i class="fa fa-lock"></i>
+                            <i class="fa fa-lock" aria-hidden="true"></i>
                         </span>
                     </div>
-                    <div class="container-login100-form-btn p-t-10">
-                        <input type="button" value="Giriş" class="login100-form-btn" onclick="Validate()">
+
+                    <div class="container-login100-form-btn">
+                        <input type="button" value="Giriş Yap" class="login100-form-btn" onclick="Dogrula()">
                     </div>
-                    <div class="text-center w-full p-t-25 p-b-80">
-                        <a href="#" class="txt1">
-                            <!-- Forgot Username / Password?  -->
-                        </a>
+
+                    <div class="text-center p-t-12">
+
+                    </div>
+
+                    <div class="text-center p-t-136">
+
                     </div>
                 </form>
             </div>
@@ -69,19 +73,42 @@
     </div>
 
     <!--===============================================================================================-->
-    <script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="~/vendorlogin/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
-    <script src="~/vendor/bootstrap/js/popper.js"></script>
-    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/vendorlogin/bootstrap/js/popper.js"></script>
+    <script src="~/vendorlogin/bootstrap/js/bootstrap.min.js"></script>
     <!--===============================================================================================-->
-    <script src="~/vendor/select2/select2.min.js"></script>
+    <script src="~/vendorlogin/select2/select2.min.js"></script>
     <!--===============================================================================================-->
-    <script src="~/js/main.js"></script>
+    <script src="~/vendorlogin/tilt/tilt.jquery.min.js"></script>
+    <script>
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+    </script>
+    <script src="~/jslogin/main.js"></script>
 
     <script>
-        function Validate() {
-            $.ajax(
+    function Dogrula(){
+
+
+        if($('#ogrenciNo').val() && $('#ogrenciNo').val()){
+            Validate();
+        }
+        else{
+        alert("HATA");
+        }
+
+        }
+
+
+
+    function Validate() {
+
+        $.ajax(
             {
+
+
                 type: "POST",
                 url: '@Url.Action("Validate", "Login")',
 
@@ -100,11 +127,14 @@
                         window.location.href = '@Url.Action("Grid", "Home")';
                     }
                     else {
-                        alert(result.message);
+                       window.location.href = '@Url.Action("Login", "Login")';
+                       alert(result.message);
+
                     }
                 }
             });
         }
+
     </script>
 
 </body>
