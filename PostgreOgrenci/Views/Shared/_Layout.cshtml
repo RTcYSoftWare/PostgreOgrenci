@@ -102,22 +102,21 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="./index.html" class="nav-link active">
-
-                                        <p>ANASAYFA</p>
-                                    </a>
+                                    <div class="nav-link active" >
+                                        @Html.ActionLink("ANASAYFA", "Anasayfa", "Ogrenci")
+                                    </div>
+                                    
+                                    
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./index2.html" class="nav-link">
-
-                                        <p>Dashboard v2</p>
-                                    </a>
+                                    <div class="nav-link">
+                                        @Html.ActionLink("ÖĞRENCİLER", "Grid", "Home")
+                                    </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./index3.html" class="nav-link">
-
-                                        <p>Dashboard v3</p>
-                                    </a>
+                                    <div class="nav-link">
+                                        @Html.ActionLink("ÖĞRENCİLER", "RTcY", "Home")
+                                    </div>
                                 </li>
                             </ul>
                         </li>
