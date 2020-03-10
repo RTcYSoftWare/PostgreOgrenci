@@ -31,7 +31,10 @@ namespace PostgreOgrenci.Controllers
             _logger = logger;
         }
 
-        [HttpGet("Anasayfa")]
+        //[HttpGet("Anasayfa")]
+        [Route("")]
+        [Route("~")]
+        [Route("Anasayfa")]
         public ActionResult Anasayfa()
         {
             return View();
@@ -47,12 +50,15 @@ namespace PostgreOgrenci.Controllers
 
         //--      Async Çağrıları      --//
 
-        [HttpGet("OgrenciListesi")]
+        //[HttpGet("OgrenciListesi")]
+        [Route("")]
+        [Route("~/")]
+        [Route("OgrenciListesi")]
         public async Task<ActionResult> Listele()
         {
             Task<List<Ogrenci>> task = new Task<List<Ogrenci>>(OgrenciListesi);
             task.Start();
-            return View("Grid", await task);
+            return View(await task);
         }
 
     }
