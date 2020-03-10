@@ -65,7 +65,7 @@
 
                 </li>
                 <li>
-                    <input type="button" value="Logout" />
+                    <input type="button" value="Logout" onclick="Validate()" />
                 </li>
 
             </ul>
@@ -102,20 +102,23 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <div class="nav-link active" >
-                                        @Html.ActionLink("ANASAYFA", "Anasayfa", "Ogrenci")
-                                    </div>
-                                    
-                                    
-                                </li>
-                                <li class="nav-item">
-                                    <div class="nav-link">
-                                        @Html.ActionLink("ÖĞRENCİLER", "Grid", "Home")
+                                    <div class="nav-link active">
+                                        @Html.ActionLink("Anasayfa", "Anasayfa", "Ogrenci")
                                     </div>
                                 </li>
                                 <li class="nav-item">
                                     <div class="nav-link">
-                                        @Html.ActionLink("ÖĞRENCİLER", "RTcY", "Home")
+                                        @Html.ActionLink("Öğrenci Listesi", "Listele", "Ogrenci")
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="nav-link">
+                                        @Html.ActionLink("Öğrenciler (2. DB)", "RTcY", "Home")
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <div class="nav-link">
+                                        @Html.ActionLink("Async Test", "Async", "Ogrenci")
                                     </div>
                                 </li>
                             </ul>
@@ -153,7 +156,7 @@
         </aside>
         <!-- /.control-sidebar -->
     </div>
-    
+
     <!-- ./wrapper -->
     <!-- jQuery -->
     <script src="~/AdminLTE-3.0.2/plugins/jquery/jquery.min.js"></script>
@@ -190,6 +193,23 @@
     <!-- AdminLTE for demo purposes -->
     <script src="~/AdminLTE-3.0.2/dist/js/demo.js"></script>
 
-   
+    <script>
+
+    function Validate() {
+
+        $.ajax(
+            {
+                type: "GET",
+                url: '@Url.Action("Logout", "Login")',
+
+                success: function () {
+                       window.location.href = '@Url.Action("Login", "Login")';
+                }
+                
+            });
+    }
+
+    </script>
+
 </body>
 </html>

@@ -91,24 +91,16 @@
     <script>
     function Dogrula(){
 
-
-        if($('#ogrenciNo').val() && $('#ogrenciNo').val()){
+        if($('#ogrenciNo').val() && $('#ogrenciNo').val())
             Validate();
-        }
-        else{
-        alert("HATA");
-        }
-
-        }
-
-
+        else
+            alert("HATA");
+    }
 
     function Validate() {
 
         $.ajax(
             {
-
-
                 type: "POST",
                 url: '@Url.Action("Validate", "Login")',
 
@@ -125,6 +117,7 @@
                     console.log(result);
                     if (result.status == true) {
                         window.location.href = '@Url.Action("Anasayfa", "Ogrenci")';
+                        
                     }
                     else {
                        window.location.href = '@Url.Action("Login", "Login")';
@@ -133,7 +126,7 @@
                     }
                 }
             });
-        }
+    }
 
     </script>
 

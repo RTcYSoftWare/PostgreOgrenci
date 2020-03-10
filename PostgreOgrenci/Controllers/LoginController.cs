@@ -5,7 +5,7 @@ using PostgreOgrenci.Services.Abstract;
 
 namespace PostgreOgrenci.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class LoginController : Controller
     {
 
@@ -27,8 +27,15 @@ namespace PostgreOgrenci.Controllers
         public IActionResult Login()
         {
             return View();
-
         }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            HttpContext.Session.SetString("JWToken", "");
+            return RedirectToAction("Login", "Login");
+        }
+
 
         [HttpPost]
         public ActionResult Validate(Ogrenci ogrenci)
@@ -44,27 +51,9 @@ namespace PostgreOgrenci.Controllers
             {
                 HttpContext.Session.SetString("JWToken", user.Token);
                 return Json(new { status = true, message = "Login Successfull!" });
-
             }
-
         }
+
+
     }
 }
-
-//var _admin = db.ogrenci.Where(s => s.email == ogrenci.email);
-//if (_admin.Any())
-//{
-//    if (_admin.Where(s => s.isim == ogrenci.isim).Any())
-//    {
-
-//        return Json(new { status = true, message = "Login Successfull!" });
-//    }
-//    else
-//    {
-//        return Json(new { status = false, message = "Invalid Password!" });
-//    }
-//}
-//else
-//{
-//    return Json(new { status = false, message = "Invalid Email!" });
-//}

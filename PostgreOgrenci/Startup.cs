@@ -44,12 +44,6 @@ namespace PostgreOgrenci
             services.AddEntityFrameworkNpgsql().AddDbContext<PostgresContext>(opt =>
             opt.UseNpgsql(Configuration.GetConnectionString("PostgresConnection")));
 
-            services.AddEntityFrameworkNpgsql().AddDbContext<PostgresContext>(opt =>
-            opt.UseNpgsql(Configuration.GetConnectionString("PostgresConnectionToken")));
-
-            services.AddEntityFrameworkNpgsql().AddDbContext<PostgresContext>(opt =>
-            opt.UseNpgsql(Configuration.GetConnectionString("PostgresConnectionLog")));
-
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
@@ -102,8 +96,6 @@ namespace PostgreOgrenci
             app.Use(async (context, next) =>
             {
                 var JWToken = context.Session.GetString("JWToken");
-
-                
 
                 if (!string.IsNullOrEmpty(JWToken))
                 {
